@@ -14,7 +14,7 @@ jobs:
         if: ${{ always() }}
         uses: devellany/send-mail@v1.0.2
         with:
-          host: SMTP_SERVER_ADDRESS       # Replace with your SMTP host
+          host: smtp.gmail.com       # Replace with your SMTP host
           port: 465
           account: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
