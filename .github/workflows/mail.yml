@@ -16,3 +16,11 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          sender: gopinathsoundar06@gmail.com
+          from: gopinathsoundar06@gmail.com
+          to: gopinathsoundar06@gmail.com
+          subject: "${{ github.job }} for ${{ github.repository }} has ${{ job.status }}"
+          body: "${{ github.job }} for ${{ github.repository }} has ${{ job.status }} in workflow ${{ github.workflow }}"
+          contentType: "text/plain"
