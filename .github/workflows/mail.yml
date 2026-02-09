@@ -7,34 +7,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: printhelloworld
-        run: echo "printhellowworld"
+      - name: Print Hello World
+        run: echo "Hello World"
 
-      - name: sendamail
-        if: ${{always()}}
-        uses: 
-         uses: devellany/send-mail@v1.0.2
+      - name: Send an email
+        if: ${{ always() }}
+        uses: devellany/send-mail@v1.0.2
         with:
-    # Enter SMTP host.
-        host: SMTP
-    # Enter SMTP port. (defaults to 465)
-        port: 465 # optional, default is 465
-    # Enter SMTP host account.
-        account: ${{ secret.EMAIL_USERNAME }}
-    # Enter SMTP host account password.
-        password: ${{ secret.EMAIL_PASSWORD }}
-    # Enter sender name.
-        sender: 
-    # Enter sender mail.
-        from: gopinathsoundar06@gmail.com
-    # Enter recipient emails and separated with 'comma'. (The prefix 'file://' if you want to read a file)
-        to: gopinathsoundar06@gmail.com
-    # Enter the subject of the mail. (The prefix 'file://' if you want to read a file)
-        subject: $ {{ github.job }} is for $ {{ github.repository }} has $ {{ job.status }}
-    # Enter the body of the mail. (The prefix 'file://' if you want to read a file)
-        body: $ {{ github.job }} is for $ {{ github.repository }} has $ {{ job.status }} $ {{ github.workflow }}
-    # Enter Content-Type HTTP header. (defaults to 'text/plain')
-        contentType: # optional, default is text/plain
-    # Attachment files are entered as an array. Required key 'path'. (The prefix 'file://' if you want to read a file)
-        attachments: # optional
+          host: SMTP_SERVER_ADDRESS       # Replace with your SMTP host
+          port: 465
+          account: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          sender: gopinathsoundar06@gmail.com
+          from: gopinathsoundar06@gmail.com
+          to: gopinathsoundar06@gmail.com
+          subject: "${{ github.job }} for ${{ github.repository }} has ${{ job.status }}"
+          body: "${{ github.job }} for ${{ github.repository }} has ${{ job.status }} in workflow ${{ github.workflow }}"
+          contentType: "text/plain"
+
       
