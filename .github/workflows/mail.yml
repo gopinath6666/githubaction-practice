@@ -10,19 +10,9 @@ jobs:
       - name: Print Hello World
         run: echo "Hello World"
 
-      - name: Send an email
+      - name: Send an email via Gmail
         if: ${{ always() }}
-        uses: devellany/send-mail@v1.0.2
+        uses: dawidd6/action-send-mail@v3
         with:
-          host: smtp.gmail.com       # Replace with your SMTP host
-          port: 587
-          account: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          sender: gopinathsoundar06@gmail.com
-          from: gopinathsoundar06@gmail.com
-          to: gopinathsoundar06@gmail.com
-          subject: "${{ github.job }} for ${{ github.repository }} has ${{ job.status }}"
-          body: "${{ github.job }} for ${{ github.repository }} has ${{ job.status }} in workflow ${{ github.workflow }}"
-          contentType: "text/plain"
-
-      
+          server_address: smtp.gmail.com
+          server_port: 587_
