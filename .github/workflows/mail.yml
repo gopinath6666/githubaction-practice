@@ -1,0 +1,40 @@
+name: sendmail
+
+on: push
+
+jobs:
+  mail:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: printhelloworld
+        run: echo "printhellowworld"
+
+      - name: sendamail
+        if: ${{always()}}
+        uses: 
+         uses: devellany/send-mail@v1.0.2
+        with:
+    # Enter SMTP host.
+        host: SMTP
+    # Enter SMTP port. (defaults to 465)
+        port: 465 # optional, default is 465
+    # Enter SMTP host account.
+        account: ${{ secret.EMAIL_USERNAME }}
+    # Enter SMTP host account password.
+        password: ${{ secret.EMAIL_PASSWORD }}
+    # Enter sender name.
+        sender: 
+    # Enter sender mail.
+        from: gopinathsoundar06@gmail.com
+    # Enter recipient emails and separated with 'comma'. (The prefix 'file://' if you want to read a file)
+        to: gopinathsoundar06@gmail.com
+    # Enter the subject of the mail. (The prefix 'file://' if you want to read a file)
+        subject: $ {{ github.job }} is for $ {{ github.repository }} has $ {{ job.status }}
+    # Enter the body of the mail. (The prefix 'file://' if you want to read a file)
+        body: $ {{ github.job }} is for $ {{ github.repository }} has $ {{ job.status }} $ {{ github.workflow }}
+    # Enter Content-Type HTTP header. (defaults to 'text/plain')
+        contentType: # optional, default is text/plain
+    # Attachment files are entered as an array. Required key 'path'. (The prefix 'file://' if you want to read a file)
+        attachments: # optional
+      
